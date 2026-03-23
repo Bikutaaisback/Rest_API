@@ -189,18 +189,4 @@ The remaining employee `500` does not appear to come from controller or service 
 
 The most likely source is database connectivity/runtime behavior between this Nest app and the configured Neon database, specifically in the Prisma adapter/driver path.
 
-### Recommended Next Step
 
-Validate the actual Neon connection details from the Neon dashboard and test using the exact connection string intended for the runtime environment where this server is executed.
-
-Practical next checks:
-
-- verify the active `DATABASE_URL`
-- confirm whether the environment should use a pooler URL or direct connection URL
-- confirm network reachability from the machine running the Nest app
-- retest `/api/employees` after updating the connection details
-
-## Notes
-
-- `src/main.ts` currently logs `process.env.DATABASE_URL` to the console. That should be removed before sharing logs or deploying the app.
-- The global exception filter currently collapses unknown runtime errors into a generic `500` response, which hides useful debugging detail during development.
